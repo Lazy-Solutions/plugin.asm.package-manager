@@ -205,7 +205,7 @@ namespace AdvancedSceneManager.Plugin.PackageManager
             {
                 File.WriteAllText(manifestFile, file);
                 CompilationPipeline.RequestScriptCompilation();
-                EditorUtility.DisplayProgressBar("Unity Package Manager", "Resolving packages...", 0);
+                //EditorUtility.DisplayProgressBar("Unity Package Manager", "Resolving packages...", 0);
             }
 
         }
