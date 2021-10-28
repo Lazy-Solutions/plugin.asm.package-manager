@@ -47,7 +47,7 @@ namespace AdvancedSceneManager.Plugin.PackageManager
     class PackageManagerExtension : UnityEditor.PackageManager.UI.IPackageManagerExtension
     {
 
-        public const string asmCurrentVersion = "1.5.0";
+        public const string asmCurrentVersion = "1.3.1";
 
         static readonly (string packageName, string displayName, string uri)[] packages =
         {
