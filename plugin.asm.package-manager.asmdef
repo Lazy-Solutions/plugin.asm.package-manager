@@ -1,0 +1,19 @@
+{
+    "name": "plugin.asm.package-manager",
+    "references": [
+        "GUID:75ad609080884b6429e7df2c4b4903ec"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_EDITOR"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

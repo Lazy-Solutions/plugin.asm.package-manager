@@ -1,0 +1,22 @@
+{
+  "name": "plugin.asm.package-manager",
+  "version": "1.3.0",
+  "displayName": "\u200bPlugins and samples",
+  "changeLogUrl": "https://assetstore.unity.com/packages/tools/utilities/advanced-scene-manager-174152#releases",
+  "documentationUrl": "https://github.com/Lazy-Solutions/advanced-scene-manager",
+  "description": "This package manages dependencies for Advanced Scene Manager and also provides easy access to plugins and samples.\n\nAdvanced Scene Manager will not work correctly if removed.",
+  "unity": "2019.1",
+  "hideInEditor": false,
+  "keywords": [
+    "asm",
+    "advanced",
+    "scene",
+    "manager"
+  ],
+  "author": {
+    "name": "Advanced Scene Manager",
+    "email": "support@lazy.solutions",
+    "url": "http://lazy.solutions/"
+  },
+  "type": "tool"
+}
