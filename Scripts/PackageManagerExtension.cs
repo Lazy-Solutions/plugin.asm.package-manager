@@ -49,7 +49,7 @@ namespace AdvancedSceneManager.Plugin.PackageManager
 
     }
 
-    class PackageManagerExtension : UnityEditor.PackageManager.UI.IPackageManagerExtension
+    class PackageManagerExtension : IPackageManagerExtension
     {
 
         static readonly (string packageName, string displayName, string uri)[] packages =
@@ -79,6 +79,9 @@ namespace AdvancedSceneManager.Plugin.PackageManager
             SetVersion();
         }
 
+        #region ASM version
+
+        //Sets version in package.json, since this is what we use to display to the user what version asm is
         static void SetVersion()
         {
 
@@ -93,6 +96,9 @@ namespace AdvancedSceneManager.Plugin.PackageManager
                 File.WriteAllText(currentVersionFile, json);
 
         }
+
+        #endregion
+        #region UI
 
         VisualElement element;
         public VisualElement CreateExtensionUI() =>
@@ -252,6 +258,8 @@ namespace AdvancedSceneManager.Plugin.PackageManager
 
             }
         }
+
+        #endregion
 
     }
 
