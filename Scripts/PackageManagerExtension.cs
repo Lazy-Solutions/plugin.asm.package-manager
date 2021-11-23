@@ -91,9 +91,21 @@ namespace AdvancedSceneManager.Plugin.PackageManager
             var match = Regex.Match(json, ".*\"version\": \"(.*)\",");
             var version = Version.Parse(match.Groups[1].Value).ToString();
 
-            json = json.Replace(match.Groups[0].Value, match.Groups[0].Value.Replace(version.ToString(), ASM.version));
+            json = json.Replace(match.Groups[0].Value, match.Groups[0].Value.Replace(version.ToString(), GetVersion()));
             if (json != originalFile)
                 File.WriteAllText(currentVersionFile, json);
+
+        }
+
+        static string GetVersion()
+        {
+
+            const string versionResource = "AdvancedSceneManager/version";
+
+            return
+                Resources.Load<TextAsset>(versionResource) is TextAsset t && t
+                ? t.text
+                : "1.3.2";
 
         }
 
