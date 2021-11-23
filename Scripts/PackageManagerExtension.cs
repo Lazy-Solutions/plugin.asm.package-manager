@@ -41,7 +41,7 @@ namespace AdvancedSceneManager.Plugin.PackageManager
             if (package.IsExample())
                 return $"https://github.com/Lazy-Solutions/{package.packageName}.git";
             else if (package.IsPlugin())
-                return $"https://github.com/Lazy-Solutions/{package.packageName}.git#asm-{ASM.version}";
+                return $"https://github.com/Lazy-Solutions/{package.packageName}.git#asm-{PackageManagerExtension.GetVersion()}";
             else if (package.IsDependency())
                 return package.uri;
             return null;
@@ -97,7 +97,7 @@ namespace AdvancedSceneManager.Plugin.PackageManager
 
         }
 
-        static string GetVersion()
+        public static string GetVersion()
         {
 
             const string versionResource = "AdvancedSceneManager/version";
