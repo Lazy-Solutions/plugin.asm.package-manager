@@ -1,8 +1,13 @@
-﻿using System;
+﻿#pragma warning disable IDE0051 // Remove unused private members
+#pragma warning disable IDE0161 // Convert to file-scoped namespace
+
+using System;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEditor.Compilation;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.UIElements;
 using PackageInfo = UnityEditor.PackageManager.PackageInfo;
@@ -36,7 +41,7 @@ namespace AdvancedSceneManager.Plugin.PackageManager
             if (package.IsExample())
                 return $"https://github.com/Lazy-Solutions/{package.packageName}.git";
             else if (package.IsPlugin())
-                return $"https://github.com/Lazy-Solutions/{package.packageName}.git#asm-{PackageManagerExtension.asmCurrentVersion}";
+                return $"https://github.com/Lazy-Solutions/{package.packageName}.git#asm-{ASM.version}";
             else if (package.IsDependency())
                 return package.uri;
             return null;
@@ -46,8 +51,6 @@ namespace AdvancedSceneManager.Plugin.PackageManager
 
     class PackageManagerExtension : UnityEditor.PackageManager.UI.IPackageManagerExtension
     {
-
-        public const string asmCurrentVersion = "1.3.1";
 
         static readonly (string packageName, string displayName, string uri)[] packages =
         {
@@ -67,9 +70,29 @@ namespace AdvancedSceneManager.Plugin.PackageManager
 
         };
 
+        const string currentVersionFile = "Packages/plugin.asm.package-manager/package.json";
+
         [InitializeOnLoadMethod]
-        static void OnLoad() =>
-            UnityEditor.PackageManager.UI.PackageManagerExtensions.RegisterExtension(new PackageManagerExtension());
+        static void OnLoad()
+        {
+            PackageManagerExtensions.RegisterExtension(new PackageManagerExtension());
+            SetVersion();
+        }
+
+        static void SetVersion()
+        {
+
+            var json = File.ReadAllText(currentVersionFile);
+            var originalFile = json;
+
+            var match = Regex.Match(json, ".*\"version\": \"(.*)\",");
+            var version = Version.Parse(match.Groups[1].Value).ToString();
+
+            json = json.Replace(match.Groups[0].Value, match.Groups[0].Value.Replace(version.ToString(), ASM.version));
+            if (json != originalFile)
+                File.WriteAllText(currentVersionFile, json);
+
+        }
 
         VisualElement element;
         public VisualElement CreateExtensionUI() =>
