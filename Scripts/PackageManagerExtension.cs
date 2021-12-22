@@ -262,7 +262,7 @@ namespace AdvancedSceneManager.Plugin.PackageManager
             if (element != null)
             {
 
-                var isOurs = ASM.assemblyNames.Contains(packageInfo?.name);
+                var isOurs = packageInfo?.name == "plugin.asm.package-manager";
 
                 element.style.display = isOurs ? DisplayStyle.Flex : DisplayStyle.None;
                 if (element.parent.parent.Q("detailLinksContainer") is VisualElement linksSection)
